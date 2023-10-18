@@ -3,7 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
-   public void ExitGames()
+    public void LoadGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void ExitGames()
     {
         Application.Quit();
     }

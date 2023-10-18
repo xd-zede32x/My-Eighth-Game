@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameFinishTrigger : MonoBehaviour
 {
     private EndPoint[] _points;
+    private float _respawnTime = 2;
 
     private void OnEnable()
     {
@@ -32,7 +34,13 @@ public class GameFinishTrigger : MonoBehaviour
                 return;
             }
         }
-        Debug.Log("Level Finish!");
-        SceneManager.LoadScene(0);  
+
+        StartCoroutine(WaitAndReloadScene());
+    }
+
+    IEnumerator WaitAndReloadScene()
+    {
+        yield return new WaitForSeconds(_respawnTime);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -20,7 +20,7 @@ public class EndPoint : MonoBehaviour
             return;
         }
 
-        if (collision.TryGetComponent<PlayerManager>(out PlayerManager player))
+        if (collision.TryGetComponent<FreeWayChecker>(out FreeWayChecker player))
         {
             IsReached = true;
             _reached .Invoke();

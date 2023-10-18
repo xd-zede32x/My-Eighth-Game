@@ -10,7 +10,7 @@ public class FreeWayChecker : MonoBehaviour
     private void FixedUpdate()
     {
         var collisionCount = _rigidbody2D.Cast(transform.right, _filter, _results, 10);
-        Debug.DrawRay(transform.position, transform.right * 10, Color.red);
+
         if (collisionCount == 0)
         {
             _rigidbody2D.velocity = transform.right * _speedMovement;

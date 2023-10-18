@@ -9,11 +9,11 @@ public class GameOver : MonoBehaviour
     [SerializeField] private UnityEvent _event;
     [SerializeField] private Text _textClose;
 
-    private float _respawnTime = 3f;
+    private float _respawnTime = 1.5f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent(out PlayerManager playerManager))
+        if (collision.collider.TryGetComponent(out FreeWayChecker playerManager))
         {
             _event?.Invoke();
             Destroy(collision.collider.gameObject);
@@ -22,7 +22,7 @@ public class GameOver : MonoBehaviour
             StartCoroutine(WaitAndReloadScene());
         }
     }
-
+    
     IEnumerator WaitAndReloadScene()
     {
         yield return new WaitForSeconds(_respawnTime);
