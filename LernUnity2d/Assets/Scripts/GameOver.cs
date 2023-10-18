@@ -9,8 +9,6 @@ public class GameOver : MonoBehaviour
     [SerializeField] private UnityEvent _event;
     [SerializeField] private Text _textClose;
 
-    private float _respawnTime = 1.5f;
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.TryGetComponent(out FreeWayChecker playerManager))
@@ -22,10 +20,12 @@ public class GameOver : MonoBehaviour
             StartCoroutine(WaitAndReloadScene());
         }
     }
-    
-    IEnumerator WaitAndReloadScene()
+
+    public IEnumerator WaitAndReloadScene(float _respawnTime = 1.5f)
     {
-        yield return new WaitForSeconds(_respawnTime);
+        var restartScene = new WaitForSeconds(_respawnTime);
+
+        yield return restartScene;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
